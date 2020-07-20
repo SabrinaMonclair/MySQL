@@ -170,10 +170,12 @@ FROM `languages`
 LEFT JOIN `frameworks` ON `languages`.`id` = `frameworks`.`languagesId`
 GROUP BY `languages`.`name`;
 
---Afficher les langages ayant plus de 3 frameworks.
 
--- SELECT `languages`,
--- INNER JOIN `frameworks` HAVING `languages`.`idLanguage` = `frameworks`.`idLanguage`; 
+--Afficher les langages ayant plus de 3 frameworks.
+SELECT `languages`.`name`, 
+COUNT(`frameworks`. `name`) AS `countFrameworks` FROM `frameworks`
+RIGHT JOIN `languages`
+ON `frameworks`.`languagesId` = `languages`. `id` GROUP BY `languages`. `name` HAVING `countFrameworks` > '3';
 
 
 
